@@ -12,10 +12,6 @@ record = {}
 root = lxml.html.fromstring(html)
 # # Find something on the page using css selectors
 jobtitles = root.cssselect("ul li a h3 span.job-list-title")
-joblinks = root.cssselect("ul li a[@href]")
-for link in joblinks:
-  linkhtml = lxml.html.tostring(job)
-  print linkhtml
 for job in jobtitles:
   jobhtml = lxml.html.tostring(job)
   jobhtmlpart1 = job.split('>')[1]

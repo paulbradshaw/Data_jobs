@@ -5,11 +5,15 @@
 # import lxml.html
 #
 # # Read in a page
-# html = scraperwiki.scrape("http://foo.com")
+url = 'http://careerssearch.bbc.co.uk/jobs/search'
+html = scraperwiki.scrape(url)
 #
 # # Find something on the page using css selectors
-# root = lxml.html.fromstring(html)
-# root.cssselect("div[align='left']")
+root = lxml.html.fromstring(html)
+#results > ul > li:nth-child(1) > a > h3 > span
+jobtitles = root.cssselect("ul li a h3 span.job-list-title")
+for job in jobtitles:
+  print jobtitles.text
 #
 # # Write out to the sqlite database using scraperwiki library
 # scraperwiki.sqlite.save(unique_keys=['name'], data={"name": "susan", "occupation": "software developer"})

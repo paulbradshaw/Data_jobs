@@ -15,7 +15,7 @@ jobtitles = root.cssselect("ul li a h3 span.job-list-title")
 for job in jobtitles:
   job = lxml.html.tostring(job)
   print 'job title1:', job
-  print 'job title:', jobtitles.text
+  print 'job title:', jobtitles.split('>')[1].split('<')[0]
   record['job'] = job
   scraperwiki.sqlite.save(unique_keys=['job'], data=record)
 #

@@ -13,6 +13,7 @@ root = lxml.html.fromstring(html)
 #results > ul > li:nth-child(1) > a > h3 > span
 jobtitles = root.cssselect("ul li a h3 span.job-list-title")
 for job in jobtitles:
+  print 'job title1:', lxml.html.tostring(job)
   print 'job title:', jobtitles.text
 #
 # # Write out to the sqlite database using scraperwiki library

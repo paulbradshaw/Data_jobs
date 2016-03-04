@@ -13,14 +13,14 @@ root = lxml.html.fromstring(html)
 #results > ul > li:nth-child(1) > a > h3 > span
 jobtitles = root.cssselect("ul li a h3 span.job-list-title")
 for job in jobtitles:
-  print 'job title1:', lxml.html.tostring(job)
+  job = lxml.html.tostring(job)
+  print 'job title1:', job
   print 'job title:', jobtitles.text
-#
-# # Write out to the sqlite database using scraperwiki library
-# scraperwiki.sqlite.save(unique_keys=['name'], data={"name": "susan", "occupation": "software developer"})
+  record['job'] = job
+  scraperwiki.sqlite.save(unique_keys=['job'], data=record)
 #
 # # An arbitrary query against the database
-# scraperwiki.sql.select("* from data where 'name'='peter'")
+
 
 # You don't have to do things with the ScraperWiki and lxml libraries.
 # You can use whatever libraries you want: https://morph.io/documentation/python

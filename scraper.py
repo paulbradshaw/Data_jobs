@@ -12,7 +12,7 @@ record = {}
 root = lxml.html.fromstring(html)
 # # Find something on the page using css selectors
 jobtitles = root.cssselect("ul li a h3 span.job-list-title")
-for jobhtml in jobtitles:
+for job in jobtitles:
   jobhtml = lxml.html.tostring(job)
   jobhtmlpart1 = jobhtml.split('>')[1]
   jobhtmlpart2 = jobhtmlpart1.split('<')[0]

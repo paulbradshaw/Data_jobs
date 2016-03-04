@@ -7,10 +7,10 @@ import lxml.html
 # # Read in a page
 url = 'http://careerssearch.bbc.co.uk/jobs/search'
 html = scraperwiki.scrape(url)
-#
-# # Find something on the page using css selectors
+#create an empty dictionary variable called record - this will be added to in a line later on (look for record ['job'])
+record = {}
 root = lxml.html.fromstring(html)
-#results > ul > li:nth-child(1) > a > h3 > span
+# # Find something on the page using css selectors
 jobtitles = root.cssselect("ul li a h3 span.job-list-title")
 for job in jobtitles:
   job = lxml.html.tostring(job)

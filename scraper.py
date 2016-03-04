@@ -12,11 +12,18 @@ record = {}
 root = lxml.html.fromstring(html)
 # # Find something on the page using css selectors
 jobtitles = root.cssselect("ul li a h3 span.job-list-title")
+joblinks = root.cssselect("ul li a[@href]")
+for link in joblinks:
+  linkhtml = lxml.html.tostring(job)
+  print linkhtml
 for job in jobtitles:
-  job = lxml.html.tostring(job)
-  print 'job title1:', job
-  print 'job title:', job.split('>')[1].split('<')[0]
-  record['job'] = job
+  jobhtml = lxml.html.tostring(job)
+  jobhtmlpart1 = job.split('>')[1]
+  jobhtmlpart2 = jobhtmlpart1.split('<')[0]
+  print 'job title html:', jobhtml
+  print 'job title cleaned up:', jobhtmlpart2
+  record['job'] = jobhtmlpart2
+  print record
   scraperwiki.sqlite.save(unique_keys=['job'], data=record)
 #
 # # An arbitrary query against the database
